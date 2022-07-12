@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fetchuser = require('../middleware/fetchuser');
 const Note = require('../models/Notes');
-const { body, validateResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 // ROUTE 1: Get All the Notes using: GET "/api/note/fetchallnotes". Login required
 
@@ -15,7 +15,7 @@ router.get('/fetchallnotes', fetchuser, async (req, res) => {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
-})
+})   
 
 
 // ROUTE 2: Add a new Note using: POST "/api/note/addnote". Login required
@@ -29,7 +29,7 @@ router.post('/addnote', fetchuser, [
             const { title, description, tag } = req.body;
             // If there are errors, return Bad request and the errors
 
-            const errors = validateResult(req);
+            const errors = validationResult(req);
 
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
