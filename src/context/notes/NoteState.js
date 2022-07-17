@@ -18,7 +18,7 @@ const NoteState = (props) => {
             }
         });
         const json = await response.json();
-
+     
         setNotes(json)
     }
 
@@ -41,8 +41,6 @@ const NoteState = (props) => {
     //Delete a Note
     const deletenote = async (id) => {
         // API Call
-        const ans = window.confirm("Do you Want to delete ?")
-        if (ans) {
         const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
             method: 'DELETE',
             headers: {
@@ -51,13 +49,10 @@ const NoteState = (props) => {
             }
         });
         const json = await response.json();
-       
-            const newNote = notes.filter((note) => { return note._id !== id; })
-            setNotes(newNote);
-            props.showAlert("Deleted Successfully", "success");
-        } else {
-            alert("Your note will remains intact.")
-        }
+        
+        const newNote = notes.filter((note) => { return note._id !== id; })
+        setNotes(newNote);
+        props.showAlert("Deleted Successfully", "success");
     }
 
 
@@ -75,12 +70,12 @@ const NoteState = (props) => {
             body: JSON.stringify({ title, description, tag }) // body data type must match "Content-Type" header
         });
         const json = await response.json();
-
+       
 
         let newNotes = JSON.parse(JSON.stringify(notes));
         //logic to edit in client side
         for (let index = 0; index < newNotes.length; index++) {
-
+            
             if (newNotes[index]._id === id) {
                 newNotes[index].title = title;
                 newNotes[index].description = description;
@@ -89,7 +84,7 @@ const NoteState = (props) => {
             }
         }
         setNotes(newNotes);
-
+       
     }
 
 
