@@ -2,12 +2,13 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import About from './components/About';
 import NoteState from './context/notes/NoteState';
 import { Alert } from './components/Alert';
 import React, { useState } from 'react';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import YourNotes from './components/YourNotes';
+// import EditNote from './components/EditNote';
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -31,7 +32,8 @@ function App() {
           <div className="container">
             <Routes>
               <Route exact path="/" element={<Home showAlert={showAlert}/>}></Route>
-              <Route exact path="/about" element={<About />}></Route>
+              <Route exact path="/fetchallnotes" element={<YourNotes showAlert={showAlert}/>}></Route>
+              {/* <Route exact path="/updatenote/:id" element={<EditNote showAlert={showAlert}/>}></Route> */}
               <Route exact path="/login" element={<Login showAlert={showAlert} />}></Route>
               <Route exact path="/signup" element={<Signup showAlert={showAlert} />}></Route>
             </Routes>

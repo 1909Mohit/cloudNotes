@@ -7,7 +7,7 @@ const Noteitem = (props) => {
 
     const { note, updatenote } = props;
     return (
-        <div className='col-md-3'>
+        <div className='col-md-12'>
             <div className="card my-3">
                 <div className="card-body">
                     <div className="d-flex">
