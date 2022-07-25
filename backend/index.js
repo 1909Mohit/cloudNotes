@@ -1,11 +1,21 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
 const express = require('express');
-const connectToMongo = require('./db');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const UserRoutes = require('./routes/auth');
 const NotesRoutes = require('./routes/note');
 
 const app = express();
-connectToMongo();
+
+
+const dbUrl = 'mongodb://localhost:27017/inotebook';
+
+mongoose.connect(dbUrl, () => {
+    console.log("Database Connected !!");
+})
 
 app.use(cors())
 
