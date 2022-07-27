@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = (props) => {
-    const [credentials, setCredentials] = useState({ name:"", email: "", password: "" , cpassword:""});
+    const [credentials, setCredentials] = useState({ name:"", email: "@gmail.com", password: ""});
     let navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,10 +49,6 @@ const Signup = (props) => {
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" className="form-control" id="password" name='password' onChange={onchange} value={credentials.password}/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                    <input type="password" className="form-control" id="cpassword" name='cpassword' onChange={onchange} value={credentials.cpassword} />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
